@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clc.springboot.demo1.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="com.clc.springboot.demo1.facade.vo.OrderVo">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="number" jdbcType="VARCHAR" property="number"/>
+        <result column="price" jdbcType="FLOAT" property="price"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="evaluate" jdbcType="VARCHAR" property="evaluate"/>
+    </resultMap>
+
+    <select id="findOrderById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select *
+        from `order`
+        where id = #{id}
+    </select>
+
+    <select id="findOrderByNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select *
+        from `order`
+        where number = #{number}
+    </select>
+
+    <update id="updateOrderEvaluate">
+        update `order`
+        set evaluate = #{evaluate}
+        where id = #{id}
+    </update>
+
+    <update id="updateOrderStatus">
+        update `order`
+        set status = #{status}
+        where id = #{id}
+    </update>
+
+    <select id="findAllOrderByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select *
+        from `order`
+        <where>
+            user_id = #{userId}
+            <if test="status != null">and status = #{status}</if>
+        </where>
+    </select>
+
+    <select id="findAllOrder" resultMap="BaseResultMap">
+        select *
+        from `order`
+        <where>
+            <if test="status != null">and status = #{status}</if>
+        </where>
+    </select>
+
+    <insert id="insertOrder">
+        insert into `order`
+        (user_id, `number`, price, remark)
+        values
+        (#{userId}, #{number}, #{price}, #{remark})
+    </insert>
+
+
+</mapper>

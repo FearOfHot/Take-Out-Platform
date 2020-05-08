@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clc.springboot.demo1.mapper.CartMapper">
+    <resultMap id="BaseResultMap" type="com.clc.springboot.demo1.facade.vo.CartVo">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="dish_id" jdbcType="BIGINT" property="dishId"/>
+        <result column="dish_number" jdbcType="BIGINT" property="dishNumber"/>
+        <result column="price" jdbcType="FLOAT" property="price"/>
+    </resultMap>
+
+    <select id="findDishInCartByDishId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select *
+        from cart
+        where dish_id = #{dishId}
+        and user_id = #{userId}
+    </select>
+
+    <update id="updateDishNumber" parameterType="java.lang.Long">
+        update cart
+        set dish_number = #{changeNumber}
+        where dish_id = #{dishId}
+        and user_id = #{userId}
+    </update>
+
+    <update id="updateDishOneNumber" parameterType="java.lang.Long">
+        update cart
+        set dish_number = dish_number + #{oneNumber}
+        where dish_id = #{dishId}
+        and user_id = #{userId}
+    </update>
+
+    <delete id="deleteDishInCart" parameterType="java.lang.Long">
+        delete
+        from cart
+        where dish_id = #{dishId}
+        and user_id = #{userId}
+    </delete>
+
+    <select id="findAllDishByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select *
+        from cart
+        where user_id = #{userId}
+    </select>
+
+    <delete id="deleteAllDishByUserId" parameterType="java.lang.Long">
+        delete
+        from cart
+        where user_id = #{userId}
+    </delete>
+
+    <update id="updateCartPrice">
+        update cart
+        set price = #{price}
+        where dish_id = #{dishId}
+        and user_id = #{userId}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clc.springboot.demo1.mapper.DishMapper">
+    <resultMap id="BaseResultMap" type="com.clc.springboot.demo1.facade.entities.Dish">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="price" jdbcType="FLOAT" property="price"/>
+        <result column="desc" jdbcType="VARCHAR" property="desc"/>
+        <result column="sales_volume" jdbcType="BIGINT" property="salesVolume"/>
+    </resultMap>
+
+    <select id="findAllDish" resultType="com.clc.springboot.demo1.facade.vo.DishVo" resultMap="BaseResultMap">
+        select *
+        from dish
+    </select>
+
+    <select id="findDishById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select *
+        from dish
+        where id = #{id}
+    </select>
+
+    <update id="updateSalesVolume" parameterType="java.lang.Long">
+        update dish
+        set sales_volume = #{salesVolume}
+        where id = #{id}
+    </update>
+
+</mapper>

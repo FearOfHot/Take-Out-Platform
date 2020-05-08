@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clc.springboot.demo1.mapper.OrderDishMapper">
+    <resultMap id="BaseResultMap" type="com.clc.springboot.demo1.facade.vo.OrderDishVo">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="order_id" jdbcType="BIGINT" property="orderId"/>
+        <result column="dish_id" jdbcType="BIGINT" property="dishId"/>
+        <result column="dish_number" jdbcType="BIGINT" property="dishNumber"/>
+        <result column="price" jdbcType="FLOAT" property="price"/>
+    </resultMap>
+
+    <select id="findOrderDishByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select *
+        from order_dish
+        where order_id = #{orderId}
+    </select>
+
+</mapper>

@@ -60,4 +60,14 @@ public class AdminController extends BaseController {
         return new Message().setObj(adminService.changeData(adminSo, admin.getId()));
     }
 
+    /**
+     * 管理员退出登录
+     * @return
+     */
+    @PostMapping("logout")
+    public Message logout() {
+        this.getSession().invalidate();
+        return new Message().setMessage("退出登录成功！");
+    }
+
 }

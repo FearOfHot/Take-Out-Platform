@@ -18,7 +18,7 @@ public class LoginIntercepter implements HandlerInterceptor {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         Admin admin = (Admin) session.getAttribute("admin");
-        if (ParamUtil.isNullOrEmpty(user) || ParamUtil.isNullOrEmpty(admin)) {
+        if (ParamUtil.isNullOrEmpty(user) && ParamUtil.isNullOrEmpty(admin)) {
             response.sendError(ExceptionTypeEnum.LOGIN_ERROR.getCode(), ExceptionTypeEnum.LOGIN_ERROR.getMessage());
             System.out.println("未登录！");
             return false;

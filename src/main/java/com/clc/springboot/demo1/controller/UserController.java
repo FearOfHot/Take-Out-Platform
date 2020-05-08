@@ -66,4 +66,14 @@ public class UserController extends BaseController {
         return new Message().setObj(userService.changeData(userSo, user.getId()));
     }
 
+    /**
+     * 用户退出登录
+     * @return
+     */
+    @PostMapping("logout")
+    public Message logout() {
+        this.getSession().invalidate();
+        return new Message().setMessage("退出登录成功！");
+    }
+
 }

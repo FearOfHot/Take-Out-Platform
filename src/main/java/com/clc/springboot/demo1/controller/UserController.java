@@ -40,7 +40,7 @@ public class UserController extends BaseController {
             HttpSession session = this.getSession();
             session.setAttribute("user", user);
             session.setMaxInactiveInterval(180 * 60);
-            return new Message().setCode(200).setMessage("登录成功！");
+            return new Message().setObj(session.getAttribute("user")).setCode(200).setMessage("登录成功！");
         }
     }
 

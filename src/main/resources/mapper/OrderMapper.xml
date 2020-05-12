@@ -44,6 +44,7 @@
             user_id = #{userId}
             <if test="status != null">and status = #{status}</if>
         </where>
+        order by create_time desc
     </select>
 
     <select id="findAllOrder" resultMap="BaseResultMap">
@@ -52,6 +53,7 @@
         <where>
             <if test="status != null">and status = #{status}</if>
         </where>
+        order by create_time desc
     </select>
 
     <insert id="insertOrder">

@@ -33,7 +33,7 @@ public class AdminController extends BaseController {
         } else {
             HttpSession session = this.getSession();
             session.setAttribute("admin", admin);
-            session.setMaxInactiveInterval(180 * 60);
+            session.setMaxInactiveInterval(1800 * 60);
             return new Message().setObj(session.getAttribute("admin")).setCode(200).setMessage("登录成功！");
         }
     }

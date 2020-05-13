@@ -1,6 +1,7 @@
 package com.clc.springboot.demo1.facade.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class OrderVo {
 
@@ -9,6 +10,14 @@ public class OrderVo {
     private Long userId;
 
     private String number;
+
+    private String name;
+
+    private String address;
+
+    private String phone;
+
+    private List<DishVo> dishVoList;
 
     private Float price;
 
@@ -44,6 +53,38 @@ public class OrderVo {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public List<DishVo> getDishVoList() {
+        return dishVoList;
+    }
+
+    public void setDishVoList(List<DishVo> dishVoList) {
+        this.dishVoList = dishVoList;
     }
 
     public Float getPrice() {

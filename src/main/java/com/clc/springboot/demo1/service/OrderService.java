@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    Boolean createOrder(String remark, Long userId);
+    Boolean createOrder(String remark, Long deliveryId, Long userId);
 
     Boolean updateOrderEvaluate(String evaluate, Long id);
 

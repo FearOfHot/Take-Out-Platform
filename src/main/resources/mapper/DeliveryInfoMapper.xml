@@ -15,4 +15,11 @@
         where user_id = #{userId}
     </select>
 
+    <select id="findDeliveryInfoById" resultType="com.clc.springboot.demo1.facade.vo.DeliveryInfoVo">
+        select *
+        from delivery_info
+        where user_id = #{userId}
+        and id = #{id}
+    </select>
+
 </mapper>

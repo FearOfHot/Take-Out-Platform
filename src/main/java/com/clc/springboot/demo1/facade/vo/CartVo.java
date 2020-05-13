@@ -8,6 +8,8 @@ public class CartVo {
 
     private Long dishId;
 
+    private String dishName;
+
     private Long dishNumber;
 
     private Float price;
@@ -34,6 +36,14 @@ public class CartVo {
 
     public void setDishId(Long dishId) {
         this.dishId = dishId;
+    }
+
+    public String getDishName() {
+        return dishName;
+    }
+
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 
     public Long getDishNumber() {

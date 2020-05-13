@@ -1,9 +1,6 @@
 package com.clc.springboot.demo1.service.impl;
 
-import com.clc.springboot.demo1.facade.entities.Dish;
-import com.clc.springboot.demo1.facade.entities.Order;
-import com.clc.springboot.demo1.facade.entities.OrderDish;
-import com.clc.springboot.demo1.facade.entities.User;
+import com.clc.springboot.demo1.facade.entities.*;
 import com.clc.springboot.demo1.facade.enums.exception.ExceptionTypeEnum;
 import com.clc.springboot.demo1.facade.so.OrderSo;
 import com.clc.springboot.demo1.facade.vo.*;
@@ -16,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -38,9 +36,12 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     private DishMapper dishMapper;
 
+    @Resource
+    private DeliveryInfoMapper deliveryInfoMapper;
+
     @Override
     @Transactional
-    public Boolean createOrder(String remark, Long userId) {
+    public Boolean createOrder(String remark, Long deliveryId, Long userId) {
         Order order = new Order();
         // 自动根据当前时间及学生学号生成订单号
         Calendar calendar = Calendar.getInstance();
@@ -55,6 +56,10 @@ public class OrderServiceImpl implements OrderService {
         for (CartVo cartVo : cartVoList) {
             price += cartVo.getPrice();
         }
+        DeliveryInfoVo deliveryInfoVo = deliveryInfoMapper.findDeliveryInfoById(deliveryId, userId);
+        order.setName(deliveryInfoVo.getName());
+        order.setAddress(deliveryInfoVo.getAddress());
+        order.setPhone(deliveryInfoVo.getPhone());
         order.setUserId(userId);
         order.setNumber(number);
         order.setPrice(price);
@@ -63,7 +68,7 @@ public class OrderServiceImpl implements OrderService {
         }
         // 由于order是数据库中的关键字，在使用mybatis的插入语句时报错
         // orderMapper.insertSelective(order);
-        orderMapper.insertOrder(order.getUserId(), order.getNumber(), order.getPrice(), order.getRemark());
+        orderMapper.insertOrder(order.getUserId(), order.getNumber(),order.getName(), order.getAddress(), order.getPhone(), order.getPrice(), order.getRemark());
         // 在订单表中新增订单完毕后获取该订单
         OrderVo orderVo = orderMapper.findOrderByNumber(number);
         // 在订单菜品映射表中添加映射关系
@@ -77,9 +82,9 @@ public class OrderServiceImpl implements OrderService {
         }
         List<OrderDishVo> orderDishVoList = orderDishMapper.findOrderDishByOrderId(orderVo.getId());
         for (OrderDishVo orderDishVo : orderDishVoList) {
-            Dish dish = dishMapper.findDishById(orderDishVo.getDishId());
-            dish.setSalesVolume(dish.getSalesVolume() + orderDishVo.getDishNumber());
-            dishMapper.updateSalesVolume(dish.getSalesVolume(), dish.getId());
+            DishVo dishVo = dishMapper.findDishById(orderDishVo.getDishId());
+            dishVo.setSalesVolume(dishVo.getSalesVolume() + orderDishVo.getDishNumber());
+            dishMapper.updateSalesVolume(dishVo.getSalesVolume(), dishVo.getId());
         }
         return true;
     }
@@ -107,9 +112,9 @@ public class OrderServiceImpl implements OrderService {
             // 订单状态变更为无效，即表示取消订单，将菜品的销量变更回去
             List<OrderDishVo> orderDishVoList = orderDishMapper.findOrderDishByOrderId(id);
             for (OrderDishVo orderDishVo : orderDishVoList) {
-                Dish dish = dishMapper.findDishById(orderDishVo.getDishId());
-                dish.setSalesVolume(dish.getSalesVolume() - orderDishVo.getDishNumber());
-                dishMapper.updateSalesVolume(dish.getSalesVolume(), dish.getId());
+                DishVo dishVo = dishMapper.findDishById(orderDishVo.getDishId());
+                dishVo.setSalesVolume(dishVo.getSalesVolume() - orderDishVo.getDishNumber());
+                dishMapper.updateSalesVolume(dishVo.getSalesVolume(), dishVo.getId());
             }
         }
         orderMapper.updateOrderStatus(status, id);
@@ -119,13 +124,36 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public List<OrderVo> findAllOrderByUserId(String status, Long userId) {
-        return orderMapper.findAllOrderByUserId(status, userId);
+        List<OrderVo> orderVoList = orderMapper.findAllOrderByUserId(status, userId);
+        setOrderDishList(orderVoList);
+        return orderVoList;
     }
 
     @Override
     @Transactional
     public List<OrderVo> findAllOrder(String status) {
-        return orderMapper.findAllOrder(status);
+        List<OrderVo> orderVoList = orderMapper.findAllOrder(status);
+        setOrderDishList(orderVoList);
+        return orderVoList;
+    }
+
+    /**
+     * 设置订单列表中所有订单的菜品列表
+     * @param orderVoList
+     */
+    private void setOrderDishList(List<OrderVo> orderVoList) {
+        for (OrderVo orderVo : orderVoList) {
+            Long orderId = orderVo.getId();
+            // 获取订单-菜品映射关系对象列表
+            List<OrderDishVo> orderDishVoList = orderDishMapper.findOrderDishByOrderId(orderId);
+            List<DishVo> dishVoList = new ArrayList<>();
+            for (OrderDishVo orderDishVo : orderDishVoList) {
+                Long dishId = orderDishVo.getDishId();
+                DishVo dishVo = dishMapper.findDishById(dishId);
+                dishVoList.add(dishVo);
+            }
+            orderVo.setDishVoList(dishVoList);
+        }
     }
 
 }

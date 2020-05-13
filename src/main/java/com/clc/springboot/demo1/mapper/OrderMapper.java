@@ -21,6 +21,7 @@ public interface OrderMapper extends MapperAdapter<Order> {
 
     List<OrderVo> findAllOrder(@Param("status") String status);
 
-    Boolean insertOrder(@Param("userId") Long userId, @Param("number") String number, @Param("price") Float price, @Param("remark") String remark);
+    Boolean insertOrder(@Param("userId") Long userId, @Param("number") String number, @Param("name") String name,
+                        @Param("address") String address, @Param("phone") String phone, @Param("price") Float price, @Param("remark") String remark);
 
 }

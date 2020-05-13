@@ -58,9 +58,9 @@
 
     <insert id="insertOrder">
         insert into `order`
-        (user_id, `number`, price, remark)
+        (user_id, `number`, `name`, address, phone, price, remark)
         values
-        (#{userId}, #{number}, #{price}, #{remark})
+        (#{userId}, #{number},#{name}, #{address}, #{phone}, #{price}, #{remark})
     </insert>
 
 

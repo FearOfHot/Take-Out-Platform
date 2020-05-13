@@ -84,8 +84,8 @@ public class CartServiceImpl implements CartService {
     public Boolean updateCartPrice(Long userId) {
         List<CartVo> cartVoList = cartMapper.findAllDishByUserId(userId);
         for (CartVo cartVo : cartVoList) {
-            Dish dish = dishMapper.findDishById(cartVo.getDishId());
-            Float singlePrice = dish.getPrice();
+            DishVo dishVo = dishMapper.findDishById(cartVo.getDishId());
+            Float singlePrice = dishVo.getPrice();
             Long number = cartVo.getDishNumber();
             Float totalPrice = singlePrice * number;
             cartMapper.updateCartPrice(totalPrice, cartVo.getDishId(), userId);

@@ -11,4 +11,6 @@ public interface DeliveryInfoMapper extends MapperAdapter<DeliveryInfo> {
 
     List<DeliveryInfoVo> findAllDeliveryInfo(@Param("userId") Long userId);
 
+    DeliveryInfoVo findDeliveryInfoById(@Param("id") Long id, @Param("userId") Long userId);
+
 }

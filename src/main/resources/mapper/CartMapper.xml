@@ -38,9 +38,10 @@
     </delete>
 
     <select id="findAllDishByUserId" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.CartVo">
-        select *
-        from cart
-        where user_id = #{userId}
+        select c.id, c.user_id, c.dish_id, d.name as 'dishName', c.dish_number, c.price
+        from cart c left join dish d on c.dish_id = d.id
+        where
+        user_id = #{userId}
     </select>
 
     <delete id="deleteAllDishByUserId" parameterType="java.lang.Long">

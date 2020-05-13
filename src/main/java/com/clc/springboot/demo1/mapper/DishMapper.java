@@ -11,7 +11,7 @@ public interface DishMapper extends MapperAdapter<Dish> {
 
     List<DishVo> findAllDish();
 
-    Dish findDishById(@Param("id") Long id);
+    DishVo findDishById(@Param("id") Long id);
 
     Boolean updateSalesVolume(@Param("salesVolume") Long salesVolume, @Param("id") Long id);
 

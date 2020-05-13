@@ -28,7 +28,7 @@ public class OrderController extends BaseController {
     @PostMapping("create")
     public Message createOrder(@RequestBody OrderSo orderSo) {
         User user = (User) this.getAttribute("user");
-        return new Message().setObj(orderService.createOrder(orderSo.getRemark(), user.getId()));
+        return new Message().setObj(orderService.createOrder(orderSo.getRemark(), orderSo.getDeliveryId(), user.getId()));
     }
 
     /**

@@ -10,6 +10,12 @@ public class OrderSo {
 
     private String number;
 
+    private String name;
+
+    private String address;
+
+    private String phone;
+
     private Float price;
 
     private String remark;
@@ -21,6 +27,11 @@ public class OrderSo {
     private String status;
 
     private String evaluate;
+
+    /**
+     * 配送地址id
+     */
+    private Long deliveryId;
 
     public Long getId() {
         return id;
@@ -44,6 +55,30 @@ public class OrderSo {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public Float getPrice() {
@@ -94,4 +129,11 @@ public class OrderSo {
         this.evaluate = evaluate;
     }
 
+    public Long getDeliveryId() {
+        return deliveryId;
+    }
+
+    public void setDeliveryId(Long deliveryId) {
+        this.deliveryId = deliveryId;
+    }
 }

@@ -58,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
         }
         DeliveryInfoVo deliveryInfoVo = deliveryInfoMapper.findDeliveryInfoById(deliveryId, userId);
         order.setName(deliveryInfoVo.getName());
-        order.setAddress(deliveryInfoVo.getAddress());
+        order.setAddress(deliveryInfoVo.getSchool() + deliveryInfoVo.getRegion() + deliveryInfoVo.getAddress());
         order.setPhone(deliveryInfoVo.getPhone());
         order.setUserId(userId);
         order.setNumber(number);

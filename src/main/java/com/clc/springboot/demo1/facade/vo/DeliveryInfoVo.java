@@ -6,6 +6,10 @@ public class DeliveryInfoVo {
 
     private String name;
 
+    private String school;
+
+    private String region;
+
     private String address;
 
     private String phone;
@@ -26,6 +30,22 @@ public class DeliveryInfoVo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getAddress() {

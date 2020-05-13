@@ -13,13 +13,13 @@
         <result column="evaluate" jdbcType="VARCHAR" property="evaluate"/>
     </resultMap>
 
-    <select id="findOrderById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <select id="findOrderById" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.OrderVo">
         select *
         from `order`
         where id = #{id}
     </select>
 
-    <select id="findOrderByNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <select id="findOrderByNumber" parameterType="java.lang.String" resultType="com.clc.springboot.demo1.facade.vo.OrderVo">
         select *
         from `order`
         where number = #{number}
@@ -37,7 +37,7 @@
         where id = #{id}
     </update>
 
-    <select id="findAllOrderByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="findAllOrderByUserId" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.OrderVo">
         select *
         from `order`
         <where>
@@ -47,7 +47,7 @@
         order by create_time desc
     </select>
 
-    <select id="findAllOrder" resultMap="BaseResultMap">
+    <select id="findAllOrder" resultType="com.clc.springboot.demo1.facade.vo.OrderVo">
         select *
         from `order`
         <where>

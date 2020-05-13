@@ -10,12 +10,12 @@
         <result column="sales_volume" jdbcType="BIGINT" property="salesVolume"/>
     </resultMap>
 
-    <select id="findAllDish" resultType="com.clc.springboot.demo1.facade.vo.DishVo" resultMap="BaseResultMap">
+    <select id="findAllDish" resultType="com.clc.springboot.demo1.facade.vo.DishVo">
         select *
         from dish
     </select>
 
-    <select id="findDishById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="findDishById" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.DishVo">
         select *
         from dish
         where id = #{id}

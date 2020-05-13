@@ -9,7 +9,7 @@
         <result column="price" jdbcType="FLOAT" property="price"/>
     </resultMap>
 
-    <select id="findDishInCartByDishId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="findDishInCartByDishId" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.CartVo">
         select *
         from cart
         where dish_id = #{dishId}
@@ -37,7 +37,7 @@
         and user_id = #{userId}
     </delete>
 
-    <select id="findAllDishByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="findAllDishByUserId" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.CartVo">
         select *
         from cart
         where user_id = #{userId}

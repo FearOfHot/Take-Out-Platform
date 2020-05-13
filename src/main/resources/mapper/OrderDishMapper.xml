@@ -9,7 +9,7 @@
         <result column="price" jdbcType="FLOAT" property="price"/>
     </resultMap>
 
-    <select id="findOrderDishByOrderId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <select id="findOrderDishByOrderId" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.OrderDishVo">
         select *
         from order_dish
         where order_id = #{orderId}

@@ -8,7 +8,11 @@ public class CartVo {
 
     private Long dishId;
 
+    private String dishUrl;
+
     private String dishName;
+
+    private String dishDesc;
 
     private Long dishNumber;
 
@@ -38,12 +42,27 @@ public class CartVo {
         this.dishId = dishId;
     }
 
+    public String getDishUrl() {
+        return dishUrl;
+    }
+
+    public void setDishUrl(String dishUrl) {
+        this.dishUrl = dishUrl;
+    }
     public String getDishName() {
         return dishName;
     }
 
     public void setDishName(String dishName) {
         this.dishName = dishName;
+    }
+
+    public String getDishDesc() {
+        return dishDesc;
+    }
+
+    public void setDishDesc(String dishDesc) {
+        this.dishDesc = dishDesc;
     }
 
     public Long getDishNumber() {

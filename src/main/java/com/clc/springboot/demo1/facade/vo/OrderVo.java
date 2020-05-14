@@ -19,7 +19,7 @@ public class OrderVo {
 
     private String phone;
 
-    private List<DishVo> dishVoList;
+    private List<OrderDishVo> orderDishVoList;
 
     private Float price;
 
@@ -83,12 +83,12 @@ public class OrderVo {
         this.phone = phone;
     }
 
-    public List<DishVo> getDishVoList() {
-        return dishVoList;
+    public List<OrderDishVo> getOrderDishVoList() {
+        return orderDishVoList;
     }
 
-    public void setDishVoList(List<DishVo> dishVoList) {
-        this.dishVoList = dishVoList;
+    public void setOrderDishVoList(List<OrderDishVo> orderDishVoList) {
+        this.orderDishVoList = orderDishVoList;
     }
 
     public Float getPrice() {

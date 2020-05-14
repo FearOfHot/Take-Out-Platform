@@ -150,9 +150,10 @@ public class OrderServiceImpl implements OrderService {
             for (OrderDishVo orderDishVo : orderDishVoList) {
                 Long dishId = orderDishVo.getDishId();
                 DishVo dishVo = dishMapper.findDishById(dishId);
-                dishVoList.add(dishVo);
+                orderDishVo.setDishName(dishVo.getName());
+                orderDishVo.setDishUrl(dishVo.getUrl());
             }
-            orderVo.setDishVoList(dishVoList);
+            orderVo.setOrderDishVoList(orderDishVoList);
         }
     }
 

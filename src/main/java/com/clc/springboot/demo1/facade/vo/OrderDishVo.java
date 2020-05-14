@@ -8,6 +8,10 @@ public class OrderDishVo {
 
     private Long dishId;
 
+    private String dishUrl;
+
+    private String dishName;
+
     private Long dishNumber;
 
     private Float price;
@@ -34,6 +38,22 @@ public class OrderDishVo {
 
     public void setDishId(Long dishId) {
         this.dishId = dishId;
+    }
+
+    public String getDishUrl() {
+        return dishUrl;
+    }
+
+    public void setDishUrl(String dishUrl) {
+        this.dishUrl = dishUrl;
+    }
+
+    public String getDishName() {
+        return dishName;
+    }
+
+    public void setDishName(String dishName) {
+        this.dishName = dishName;
     }
 
     public Long getDishNumber() {

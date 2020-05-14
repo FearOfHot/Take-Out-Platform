@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public Boolean createOrder(String remark, Long deliveryId, Long userId) {
+    public Long createOrder(String remark, Long deliveryId, Long userId) {
         Order order = new Order();
         // 自动根据当前时间及学生学号生成订单号
         Calendar calendar = Calendar.getInstance();
@@ -86,7 +86,7 @@ public class OrderServiceImpl implements OrderService {
             dishVo.setSalesVolume(dishVo.getSalesVolume() + orderDishVo.getDishNumber());
             dishMapper.updateSalesVolume(dishVo.getSalesVolume(), dishVo.getId());
         }
-        return true;
+        return orderVo.getId();
     }
 
     @Override

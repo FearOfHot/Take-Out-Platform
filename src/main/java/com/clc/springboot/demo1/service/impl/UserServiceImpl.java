@@ -86,4 +86,10 @@ public class UserServiceImpl implements UserService {
         user.setPhoneNumber(userVo.getPhoneNumber());
         return user;
     }
+
+    @Override
+    @Transactional
+    public User getInfo(Long id) {
+        return userMapper.findUserById(id);
+    }
 }

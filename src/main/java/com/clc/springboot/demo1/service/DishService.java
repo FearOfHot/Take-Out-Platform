@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface DishService {
 
+    List<DishVo> findAllDishAndWhetherInCart(Long userId);
+
     List<DishVo> findAllDish();
 
     Boolean saveDish(DishSo dishSo);

@@ -2,6 +2,7 @@ package com.clc.springboot.demo1.controller;
 
 import com.clc.springboot.demo1.controller.base.BaseController;
 import com.clc.springboot.demo1.facade.base.Message;
+import com.clc.springboot.demo1.facade.entities.User;
 import com.clc.springboot.demo1.facade.so.DishSo;
 import com.clc.springboot.demo1.service.DishService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,16 @@ public class DishController extends BaseController {
 
     @Resource
     private DishService dishService;
+
+    /**
+     * 根据用户是否在购物车中有菜品来不一样的展示菜品
+     * @return
+     */
+    @PostMapping("cart/query")
+    public Message findAllDishAndWhetherInCart(){
+        User user = (User) this.getAttribute("user");
+        return new Message().setObj(dishService.findAllDishAndWhetherInCart(user.getId()));
+    }
 
     /**
      * 查看所有菜品

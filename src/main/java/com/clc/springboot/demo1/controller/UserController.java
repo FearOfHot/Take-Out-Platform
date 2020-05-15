@@ -76,4 +76,14 @@ public class UserController extends BaseController {
         return new Message().setMessage("退出登录成功！");
     }
 
+    /**
+     * 获取用户信息
+     * @return
+     */
+    @PostMapping("/info/get")
+    public Message getInfo() {
+        User user = (User) this.getAttribute("user");
+        return new Message().setObj(userService.getInfo(user.getId()));
+    }
+
 }

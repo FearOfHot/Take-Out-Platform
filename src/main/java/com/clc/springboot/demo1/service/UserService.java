@@ -16,6 +16,8 @@ public interface UserService {
 
     Boolean changeData(UserSo userSo, Long id);
 
+    User getInfo(Long id);
+
 //    Boolean updateBalance(Float balance, Long id);
 
 }

@@ -14,6 +14,10 @@ public class DishVo {
 
     private Long salesVolume;
 
+    private Boolean inCurrentUserCartOrNot;
+
+    private Long inCurrentUserCartDishNumber;
+
     public Long getId() {
         return id;
     }
@@ -62,4 +66,19 @@ public class DishVo {
         this.salesVolume = salesVolume;
     }
 
+    public Boolean getInCurrentUserCartOrNot() {
+        return inCurrentUserCartOrNot;
+    }
+
+    public void setInCurrentUserCartOrNot(Boolean inCurrentUserCartOrNot) {
+        this.inCurrentUserCartOrNot = inCurrentUserCartOrNot;
+    }
+
+    public Long getInCurrentUserCartDishNumber() {
+        return inCurrentUserCartDishNumber;
+    }
+
+    public void setInCurrentUserCartDishNumber(Long inCurrentUserCartDishNumber) {
+        this.inCurrentUserCartDishNumber = inCurrentUserCartDishNumber;
+    }
 }

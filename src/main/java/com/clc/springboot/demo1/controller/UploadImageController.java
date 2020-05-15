@@ -10,12 +10,13 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("image")
-public class UploadImage {
+public class UploadImageController {
 
     @PostMapping("/upload")
     public Message uploadAvatarHandler(@RequestParam("file") MultipartFile uploadFile ) throws IOException {
         // 存储图片的路径
-        String path = "E:\\vue-relation\\vue-work\\demo1\\src\\assets\\dish";
+        // String path = "E:\\vue-relation\\vue-work\\demo1\\src\\assets\\dish";
+        String path = "D:\\final\\vue\\Vue-Take-Out\\src\\assets\\dish";
         //空文件夹在编译时不会打包进入target中
         File uploadDir = new File(path);
         if (!uploadDir.exists()) {
@@ -26,12 +27,14 @@ public class UploadImage {
             String oldName = uploadFile.getOriginalFilename();
             System.out.println("[上传的文件名]：" + oldName);
             //我的文件保存在static目录下的avatar/user
-            File avatar = new File(path, oldName);
+            double randomNum = Math.random();
+            String newName = randomNum + ".jpg";
+            File avatar = new File(path, newName.substring(3));
             try {
                 //保存图片
                 uploadFile.transferTo(avatar);
                 //返回成功结果，附带文件的相对路径
-                return new Message().setMessage("上传成功");
+                return new Message().setObj("../../../assets/dish/" + newName.substring(3)).setMessage("上传成功");
             }catch (IOException e) {
                 e.printStackTrace();
                 return new Message().setMessage("上传失败");

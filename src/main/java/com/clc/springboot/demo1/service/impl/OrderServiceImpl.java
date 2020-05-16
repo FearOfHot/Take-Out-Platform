@@ -7,6 +7,7 @@ import com.clc.springboot.demo1.facade.vo.*;
 import com.clc.springboot.demo1.mapper.*;
 import com.clc.springboot.demo1.service.OrderService;
 import com.clc.springboot.demo1.support.excepts.ServiceEx;
+import com.clc.springboot.demo1.support.utilities.ImageToBASE64;
 import com.clc.springboot.demo1.support.utilities.ParamUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -152,6 +153,13 @@ public class OrderServiceImpl implements OrderService {
                 DishVo dishVo = dishMapper.findDishById(dishId);
                 orderDishVo.setDishName(dishVo.getName());
                 orderDishVo.setDishUrl(dishVo.getUrl());
+                if (ParamUtil.isNotEmpty(orderDishVo.getDishUrl())) {
+                    try {
+                        orderDishVo.setDishBase64Url(ImageToBASE64.ImageToBase64ByLocal(orderDishVo.getDishUrl().substring(21)));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
             orderVo.setOrderDishVoList(orderDishVoList);
         }

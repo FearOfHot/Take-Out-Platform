@@ -14,6 +14,8 @@ public class DishVo {
 
     private Long salesVolume;
 
+    private String base64Url;
+
     private Boolean inCurrentUserCartOrNot;
 
     private Long inCurrentUserCartDishNumber;
@@ -64,6 +66,14 @@ public class DishVo {
 
     public void setSalesVolume(Long salesVolume) {
         this.salesVolume = salesVolume;
+    }
+
+    public String getBase64Url() {
+        return base64Url;
+    }
+
+    public void setBase64Url(String base64Url) {
+        this.base64Url = base64Url;
     }
 
     public Boolean getInCurrentUserCartOrNot() {

@@ -24,4 +24,6 @@ public interface OrderMapper extends MapperAdapter<Order> {
     Boolean insertOrder(@Param("userId") Long userId, @Param("number") String number, @Param("name") String name,
                         @Param("address") String address, @Param("phone") String phone, @Param("price") Float price, @Param("remark") String remark);
 
+    List<OrderVo> findOrderByYearAndMonth(@Param("year") Long year, @Param("month") Long month);
+
 }

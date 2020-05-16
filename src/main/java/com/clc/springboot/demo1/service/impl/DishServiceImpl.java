@@ -9,12 +9,19 @@ import com.clc.springboot.demo1.mapper.CartMapper;
 import com.clc.springboot.demo1.mapper.DishMapper;
 import com.clc.springboot.demo1.mapper.OrderMapper;
 import com.clc.springboot.demo1.service.DishService;
+import com.clc.springboot.demo1.support.utilities.ImageToBASE64;
 import com.clc.springboot.demo1.support.utilities.ParamUtil;
 import org.springframework.beans.BeanUtils;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import sun.misc.BASE64Encoder;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 @Service
@@ -54,7 +61,17 @@ public class DishServiceImpl implements DishService {
     @Override
     @Transactional
     public List<DishVo> findAllDish() {
-        return dishMapper.findAllDish();
+        List<DishVo> dishVoList = dishMapper.findAllDish();
+        for (DishVo dishVo : dishVoList) {
+            if (ParamUtil.isNotEmpty(dishVo.getUrl())) {
+                try {
+                    dishVo.setBase64Url(ImageToBASE64.ImageToBase64ByLocal(dishVo.getUrl().substring(21)));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return dishVoList;
     }
 
     @Override

@@ -10,6 +10,8 @@ public class OrderDishVo {
 
     private String dishUrl;
 
+    private String dishBase64Url;
+
     private String dishName;
 
     private Long dishNumber;
@@ -46,6 +48,14 @@ public class OrderDishVo {
 
     public void setDishUrl(String dishUrl) {
         this.dishUrl = dishUrl;
+    }
+
+    public String getDishBase64Url() {
+        return dishBase64Url;
+    }
+
+    public void setDishBase64Url(String dishBase64Url) {
+        this.dishBase64Url = dishBase64Url;
     }
 
     public String getDishName() {

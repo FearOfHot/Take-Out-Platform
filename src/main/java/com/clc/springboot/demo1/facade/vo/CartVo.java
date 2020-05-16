@@ -10,6 +10,8 @@ public class CartVo {
 
     private String dishUrl;
 
+    private String dishBase64Url;
+
     private String dishName;
 
     private String dishDesc;
@@ -51,6 +53,14 @@ public class CartVo {
     }
     public String getDishName() {
         return dishName;
+    }
+
+    public String getDishBase64Url() {
+        return dishBase64Url;
+    }
+
+    public void setDishBase64Url(String dishBase64Url) {
+        this.dishBase64Url = dishBase64Url;
     }
 
     public void setDishName(String dishName) {

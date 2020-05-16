@@ -8,6 +8,8 @@ import com.clc.springboot.demo1.facade.vo.DishVo;
 import com.clc.springboot.demo1.mapper.CartMapper;
 import com.clc.springboot.demo1.mapper.DishMapper;
 import com.clc.springboot.demo1.service.CartService;
+import com.clc.springboot.demo1.support.utilities.ImageToBASE64;
+import com.clc.springboot.demo1.support.utilities.ParamUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,7 +64,17 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional
     public List<CartVo> findAllDishByUserId(Long userId) {
-        return cartMapper.findAllDishByUserId(userId);
+        List<CartVo> cartVoList = cartMapper.findAllDishByUserId(userId);
+        for (CartVo cartVo : cartVoList) {
+            if (ParamUtil.isNotEmpty(cartVo.getDishUrl())) {
+                try {
+                    cartVo.setDishBase64Url(ImageToBASE64.ImageToBase64ByLocal(cartVo.getDishUrl().substring(21)));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return cartVoList;
     }
 
     @Override

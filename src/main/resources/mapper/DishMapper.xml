@@ -13,6 +13,7 @@
     <select id="findAllDish" resultType="com.clc.springboot.demo1.facade.vo.DishVo">
         select *
         from dish
+        order by id desc
     </select>
 
     <select id="findDishById" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.DishVo">

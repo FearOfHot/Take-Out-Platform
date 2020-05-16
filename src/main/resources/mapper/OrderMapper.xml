@@ -63,5 +63,13 @@
         (#{userId}, #{number},#{name}, #{address}, #{phone}, #{price}, #{remark})
     </insert>
 
+    <select id="findOrderByYearAndMonth" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.OrderVo">
+         SELECT *
+         FROM `order`
+         WHERE MONTH(create_time) = #{month}
+         AND YEAR(create_time) = #{year}
+--          AND `status` = 3;
+    </select>
+
 
 </mapper>

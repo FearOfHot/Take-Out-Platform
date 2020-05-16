@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clc.springboot.demo1.mapper.OrderDataMapper">
+
+
+    <select id="findOrderDataByYearAndMonth" parameterType="java.lang.Long" resultType="com.clc.springboot.demo1.facade.vo.OrderDataVo">
+         SELECT COUNT(*) AS order_number,SUM(price) AS order_total_price, AVG(price) AS order_avg_price
+         FROM `order`
+         WHERE MONTH(create_time) = #{month}
+         AND YEAR(create_time) = #{year}
+--          AND `status` = 3;
+    </select>
+
+
+</mapper>

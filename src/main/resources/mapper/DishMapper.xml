@@ -28,4 +28,11 @@
         where id = #{id}
     </update>
 
+    <insert id="insertNewDish">
+        insert into dish
+        (`name`, url, price, `desc`)
+        values
+        (#{name}, #{url}, #{price}, #{desc})
+    </insert>
+
 </mapper>

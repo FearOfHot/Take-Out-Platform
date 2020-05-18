@@ -85,7 +85,7 @@ public class DishServiceImpl implements DishService {
             dishMapper.updateByPrimaryKeySelective(dish);
         } else {
             //表示新建菜品
-            dishMapper.insertSelective(dish);
+            dishMapper.insertNewDish(dish.getName(), dish.getUrl(), dish.getPrice(), dish.getDesc());
         }
         return true;
     }

@@ -1,5 +1,6 @@
 package com.clc.springboot.demo1.facade.entities;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -8,6 +9,7 @@ public class Dish {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(insertable = false)
     private Long id;
 
     private String name;

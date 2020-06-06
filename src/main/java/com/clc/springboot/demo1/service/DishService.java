@@ -15,4 +15,8 @@ public interface DishService {
 
     Boolean deleteDish(DishSo dishSo);
 
+    List<String> findTopSixDishName();
+
+    List<Long> findTopSixDishSalesVolume();
+
 }

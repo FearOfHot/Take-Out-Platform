@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -95,5 +96,23 @@ public class DishServiceImpl implements DishService {
     public Boolean deleteDish(DishSo dishSo) {
         dishMapper.deleteByPrimaryKey(dishSo.getId());
         return true;
+    }
+
+    @Override
+    public List<String> findTopSixDishName() {
+        List<String> result = new ArrayList<>();
+        for (DishVo dishVo : dishMapper.findTopSixDish()) {
+            result.add(dishVo.getName());
+        }
+        return result;
+    }
+
+    @Override
+    public List<Long> findTopSixDishSalesVolume() {
+        List<Long> result = new ArrayList<>();
+        for (DishVo dishVo : dishMapper.findTopSixDish()) {
+            result.add(dishVo.getSalesVolume());
+        }
+        return result;
     }
 }

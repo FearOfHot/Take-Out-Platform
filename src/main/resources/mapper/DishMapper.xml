@@ -35,4 +35,11 @@
         (#{name}, #{url}, #{price}, #{desc})
     </insert>
 
+    <select id="findTopSixDish" resultType="com.clc.springboot.demo1.facade.vo.DishVo">
+        select *
+        from dish
+        order by sales_volume desc
+        limit 6;
+    </select>
+
 </mapper>

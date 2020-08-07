@@ -21,50 +21,6 @@ public class LogUtil {
         return LogManager.getLogger(str);
     }
 
-    public static void info(Class clazz, Object msg) {
-        getLogger(clazz).info(msg);
-    }
-
-    public static void info(Object obj, Object msg) {
-        getLogger(obj).info(msg);
-    }
-
-    public static void info(String str, Object msg) {
-        getLogger(str).info(msg);
-    }
-
-    public static void info(Object msg) {
-        getLogger().info(msg);
-    }
-    public static void info(String format, Object... args) {
-        getLogger().info(format,args);
-    }
-    public static void info(Object obj,String format, Object... args) {
-        getLogger(obj).info(format,args);
-    }
-
-    public static void debug(Class clazz, Object msg) {
-        getLogger(clazz).debug(msg);
-    }
-
-    public static void debug(Object obj, Object msg) {
-        getLogger(obj).debug(msg);
-    }
-
-    public static void debug(String str, Object msg) {
-        getLogger(str).debug(msg);
-    }
-
-    public static void debug(Object msg) {
-        getLogger().debug(msg);
-    }
-    public static void debug(String format, Object... args) {
-        getLogger().debug(format,args);
-    }
-    public static void debug(Object obj,String format, Object... args) {
-        getLogger(obj).debug(format,args);
-    }
-
     public static void error(Class clazz, Object msg) {
         getLogger(clazz).error(msg);
     }

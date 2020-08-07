@@ -17,4 +17,6 @@ public interface DishMapper extends MapperAdapter<Dish> {
 
     Boolean insertNewDish(@Param("name") String name, @Param("url") String url, @Param("price") Float price, @Param("desc") String desc);
 
+    List<DishVo> findTopSixDish();
+
 }

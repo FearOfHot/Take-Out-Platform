@@ -57,4 +57,14 @@ public class DishController extends BaseController {
     public Message deleteDish(@RequestBody DishSo dishSo) {
         return new Message().setObj(dishService.deleteDish(dishSo));
     }
+
+    @PostMapping("top/six/name")
+    public Message topSixDishName(@RequestBody DishSo dishSo) {
+        return new Message().setObj(dishService.findTopSixDishName());
+    }
+
+    @PostMapping("top/six/sales")
+    public Message topSixDishSales(@RequestBody DishSo dishSo) {
+        return new Message().setObj(dishService.findTopSixDishSalesVolume());
+    }
 }
